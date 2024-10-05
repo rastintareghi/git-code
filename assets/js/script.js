@@ -33,10 +33,10 @@ fileInput.addEventListener("change", async () => {
 
       } catch (error) {
         console.error("Error during file upload:", error);
-        alert("در ارسال فایل خطایی رخ داد.");
+        showToast("در ارسال فایل خطایی رخ داد.", "error");
       }
     } else {
-      alert("فقط فایل‌های اکسل و CSV مجاز هستند.");
+      showToast("فقط فایل‌های اکسل و CSV مجاز هستند.", "error");
       fileInput.value = "";
     }
   }
@@ -87,3 +87,16 @@ modalBtn.addEventListener("click", () => {
   modalWrapper.classList.add("d-none");
   location.reload();
 });
+
+function showToast(message, type) {
+  Toastify({
+    text: message,
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    backgroundColor: type === "error" 
+      ? "red" 
+      : "green",
+    close: true
+  }).showToast();
+}
