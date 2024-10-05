@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/app.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="buttons__wrapper">
+      <form action="#" class="form"></form>
+      <input type="file" class="form__input" id="file-input">
+      <label for="file-input" class="form__label">Select File</label>
+      </form>
+      <button id="spin" class="spin hidden">
+        <span class="spin-text">SPIN</span>
+      </button>
+    </div>
+
+    <div class="fortune-wheel">
+      <div id="wheel" class="wheel">
+        <div class="ring">
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+          <div class="label"><span></span></div>
+        </div>
+      </div>
+      <div class="back-wheel"></div>
+      <div class="holder"></div>
+      <div class="shadow"></div>
+      <div class="arrow"></div>
+    </div>
+    <!-- modal -->
+    <div class="modal-wrapper d-none">
+      <div class="modal">
+        <p>
+          <span>شماره سفارش برنده</span>
+          <span class="orderNumberSpan"></span>
+        </p>
+        <button class="modal-btn">بستن</button>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
