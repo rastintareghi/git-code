@@ -4,10 +4,12 @@ let fileInput = document.querySelector("#file-input");
 let formLabel = document.querySelector(".form__label");
 let modalWrapper = document.querySelector(".modal-wrapper");
 let modalBtn = document.querySelector(".modal-btn");
-let orderNumberSpan = document.querySelector(".orderNumberSpan");
+let orderNumberTd = document.querySelector(".orderNumberTd");
+let fullNameTd = document.querySelector(".fullNameTd");
 
 // متغیری برای ذخیره شماره سفارش
 let orderNumber = null;
+let fullName = null;
 
 fileInput.addEventListener("change", async () => {
   let allowedExtensions = ["csv", "xlsx"];
@@ -24,6 +26,7 @@ fileInput.addEventListener("change", async () => {
         if (Array.isArray(response.data)) {
           let randomIndex = Math.floor(Math.random() * response.data.length);
           orderNumber = response.data[randomIndex]["شماره سفارش"];
+          fullName = response.data[randomIndex]["نام (صورتحساب)"] + " " + response.data[randomIndex]["نام خانوادگی (صورتحساب)"];
         } else {
           orderNumber = response.data["شماره سفارش"]; // اگر تنها یک شیء باشد
         }
@@ -69,7 +72,8 @@ function spinWheel(evt) {
 
   setTimeout(() => {
     if (orderNumber) {
-      orderNumberSpan.innerText = orderNumber;
+      orderNumberTd.innerText = orderNumber;
+      fullNameTd.innerText = fullName;
       modalWrapper.classList.remove("d-none");
     } else {
       modalWrapper.classList.add("d-none");

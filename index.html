@@ -13,10 +13,10 @@
     <div class="buttons__wrapper">
       <form action="#" class="form"></form>
       <input type="file" class="form__input" id="file-input">
-      <label for="file-input" class="form__label">Select File</label>
+      <label for="file-input" class="form__label">آپلود فایل</label>
       </form>
       <button id="spin" class="spin hidden">
-        <span class="spin-text">SPIN</span>
+        <span class="spin-text">چرخش</span>
       </button>
     </div>
 
@@ -44,13 +44,20 @@
     </div>
     <!-- modal -->
     <div class="modal-wrapper d-none">
-      <div class="modal">
-        <p>
-          <span>شماره سفارش برنده</span>
-          <span class="orderNumberSpan"></span>
-        </p>
-        <button class="modal-btn">بستن</button>
-      </div>
+        <div class="user-card">
+          <table class="info-table">
+            <tr>
+              <th>نام و نام خانوادگی:</th>
+              <td class="fullNameTd">علی رضایی</td>
+            </tr>
+            <tr>
+              <th>شماره سفارش:</th>
+              <td class="orderNumberTd">12345</td>
+            </tr>
+          </table>
+          <button class="modal-btn">بستن</button>
+        </div>
+        
     </div>
   </div>
   <script src="./assets/js/script.js"></script>
