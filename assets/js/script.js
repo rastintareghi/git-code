@@ -7,7 +7,7 @@ let modalBtn = document.querySelector(".modal-btn");
 let orderNumberTd = document.querySelector(".orderNumberTd");
 let fullNameTd = document.querySelector(".fullNameTd");
 
-// متغیری برای ذخیره شماره سفارش
+let data = null;
 let orderNumber = null;
 let fullName = null;
 
@@ -17,18 +17,17 @@ fileInput.addEventListener("change", async () => {
   if (file) {
     let fileExtension = file.name.split('.').pop().toLowerCase();
     if (allowedExtensions.includes(fileExtension)) {
-      button.classList.remove("hidden");
       formLabel.classList.add("hidden");
+      button.classList.remove("hidden");
+
       try {
         let response = await uploadFile(file);
-
-        // فرض بر این است که response.data یک آرایه از اشیاء است
         if (Array.isArray(response.data)) {
-          let randomIndex = Math.floor(Math.random() * response.data.length);
-          orderNumber = response.data[randomIndex]["شماره سفارش"];
-          fullName = response.data[randomIndex]["نام (صورتحساب)"] + " " + response.data[randomIndex]["نام خانوادگی (صورتحساب)"];
+          data = response.data;
+          selectRandomData();
         } else {
-          orderNumber = response.data["شماره سفارش"]; // اگر تنها یک شیء باشد
+          orderNumber = response.data["شماره سفارش"];
+          fullName = response.data["نام (صورتحساب)"] + " " + response.data["نام خانوادگی (صورتحساب)"];
         }
 
       } catch (error) {
@@ -62,6 +61,13 @@ const uploadFile = async (file) => {
     throw error;
   }
 };
+function selectRandomData() {
+  if (data) {
+    let randomIndex = Math.floor(Math.random() * data.length);
+    orderNumber = data[randomIndex]["شماره سفارش"];
+    fullName = data[randomIndex]["نام (صورتحساب)"] + " " + data[randomIndex]["نام خانوادگی (صورتحساب)"];
+  }
+}
 
 button.addEventListener("click", spinWheel);
 
@@ -79,13 +85,16 @@ function spinWheel(evt) {
       modalWrapper.classList.add("d-none");
       console.log("شماره سفارش موجود نیست.");
     }
+    button.classList.remove("hidden");
 
   }, 2500);
+  selectRandomData();
 }
 
 modalBtn.addEventListener("click", () => {
   modalWrapper.classList.add("d-none");
-  location.reload();
+  orderNumber = null; 
+  fullName = null; 
 });
 
 function showToast(message, type) {
