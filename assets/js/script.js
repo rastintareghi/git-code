@@ -120,3 +120,6 @@ const userNames='rastin'
 const getMe=()=>{
   reeturn true
 }
+const getInfo=()=>{
+  reeturn true
+}
